@@ -1,0 +1,95 @@
+<div class="contact-wrapper">
+  <div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+      <div class="col-md-10 col-lg-8">
+
+        <div class="card border-0 shadow-lg">
+          <div class="card-body p-4 p-md-5 d-block"> <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+              <h2 class="fw-bold m-0 text-primary">Contacto</h2>
+              <span class="badge glass text-primary border-primary-subtle">FrontEnd + BackEnd (simulado)</span>
+            </div>
+            <p class="text-muted mb-4">
+              Aquí validamos en FrontEnd (HTML + scripts) y también en BackEnd (simulado).
+              Verás errores por campo enviados por el “servidor”.
+            </p>
+
+            <div *ngIf="apiMessage && !enviado" class="alert alert-danger glass rounded-4 mb-4" role="alert">
+              {{ apiMessage }}
+            </div>
+
+            <div *ngIf="enviado" class="alert alert-success glass rounded-4 mb-4" role="alert">
+              ✅ {{ apiMessage || 'Mensaje enviado correctamente.' }}
+            </div>
+
+            <form #f="ngForm" (ngSubmit)="enviar(f)" novalidate>
+
+              <div class="mb-3">
+                <label class="form-label fw-bold text-primary">Nombre</label>
+                <input type="text" class="form-control glass-input" name="nombre" [(ngModel)]="form.nombre" required minlength="3"
+                  maxlength="60" [pattern]="nombreRegex" #nombre="ngModel"
+                  [class.is-invalid]="(nombre.invalid && (nombre.touched || f.submitted)) || hasApiError('nombre')"
+                  placeholder="Ej: Juan Pérez" />
+                <div class="invalid-feedback text-danger">
+                  <div *ngIf="nombre.errors?.['required']">El nombre es obligatorio.</div>
+                  <div *ngIf="hasApiError('nombre')">{{ apiError('nombre') }}</div>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label fw-bold text-primary">Correo</label>
+                <input type="email" class="form-control glass-input" name="correo" [(ngModel)]="form.correo" required
+                  maxlength="120" pattern="^[^\s@]+@[^\s@]+\.[^\s@]{2,}$" #correo="ngModel"
+                  [class.is-invalid]="(correo.invalid && (correo.touched || f.submitted)) || hasApiError('correo')"
+                  placeholder="ejemplo@correo.com" />
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label fw-bold text-primary">Confirmar correo</label>
+                <input type="email" class="form-control glass-input" name="confirmarCorreo" [(ngModel)]="form.confirmarCorreo"
+                  required maxlength="120" pattern="^[^\s@]+@[^\s@]+\.[^\s@]{2,}$" #confirmarCorreo="ngModel"
+                  [class.is-invalid]="(confirmarCorreo.invalid && (confirmarCorreo.touched || f.submitted)) || !correosCoinciden()" 
+                  placeholder="Repite tu correo" />
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label fw-bold text-primary">Mensaje</label>
+                <textarea class="form-control glass-input" name="mensaje" [(ngModel)]="form.mensaje" required minlength="10"
+                  maxlength="500" #mensaje="ngModel"
+                  [class.is-invalid]="(mensaje.invalid && (mensaje.touched || f.submitted))"
+                  rows="5" placeholder="Escribe tu mensaje..."></textarea>
+                <div class="d-flex justify-content-between mt-1">
+                  <small class="text-muted">Mín. 10, máx. 500 caracteres</small>
+                  <small class="text-muted">{{ (form.mensaje?.length ?? 0) }}/500</small>
+                </div>
+              </div>
+
+              <div class="mb-4">
+                <label class="form-label fw-bold text-primary">Verificación humana</label>
+                <div class="input-group glass-group">
+                  <span class="input-group-text glass text-white fw-bold">{{ desafioActual }}</span>
+                  <input type="text" class="form-control glass-input" name="respuesta" [(ngModel)]="form.respuesta" required
+                    #respuesta="ngModel" [class.is-invalid]="(respuesta.touched || f.submitted) && !desafioValido()" 
+                    placeholder="Respuesta" />
+                </div>
+              </div>
+
+              <div class="d-flex justify-content-end gap-3">
+                <button type="submit" class="btn btn-neon rounded-pill px-4 d-flex align-items-center gap-2"
+                  [disabled]="loading || f.invalid || !correosCoinciden() || !desafioValido()">
+                  <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status"></span>
+                  {{ loading ? 'Enviando...' : 'Enviar' }}
+                </button>
+                <button type="button" class="btn btn-outline-neon rounded-pill px-4" (click)="limpiar(f)"
+                  [disabled]="loading">
+                  Limpiar
+                </button>
+              </div>
+
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

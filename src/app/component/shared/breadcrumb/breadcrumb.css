@@ -1,0 +1,32 @@
+/* Estilos para el contenedor del breadcrumb */
+.breadcrumb {
+  margin: 12px 0;
+  font-size: 14px;
+}
+
+/* Estilos para los enlaces dentro del breadcrumb */
+.breadcrumb a {
+  text-decoration: none;
+  color: var(--text-muted);
+  transition: color 0.3s;
+}
+
+/* Efecto hover al pasar el ratón sobre los enlaces */
+.breadcrumb a:hover {
+  text-decoration: none;
+  color: var(--neon-primary);
+  text-shadow: 0 0 5px rgba(57, 255, 20, 0.4);
+}
+
+/* Estilos para el separador (/) */
+.separator {
+  margin: 0 8px;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* Estilos para el elemento actual (última miga) */
+.current {
+  font-weight: 600;
+  color: var(--text-main);
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
+}

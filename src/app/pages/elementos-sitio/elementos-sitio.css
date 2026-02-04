@@ -1,0 +1,152 @@
+/* --- BLUEPRINT CONTAINER --- */
+.blueprint-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    font-family: 'Segoe UI', sans-serif;
+    /* Clean font */
+    color: var(--text-main);
+    padding-bottom: 100px;
+    /* Optional grid background pattern could go here */
+}
+
+/* --- TITLE BOX --- */
+.bp-title-box {
+    border: 1px solid rgba(57, 255, 20, 0.4);
+    display: inline-block;
+    padding: 20px 40px;
+    position: relative;
+    background: rgba(57, 255, 20, 0.02);
+}
+
+.bp-title-box h1 {
+    font-family: 'Courier New', monospace;
+    letter-spacing: 2px;
+    font-size: 2rem;
+    margin: 10px 0;
+    color: #fff;
+}
+
+.tech-label {
+    font-size: 0.7rem;
+    color: var(--neon-primary);
+    display: block;
+    letter-spacing: 1px;
+}
+
+
+/* --- BLUEPRINT GRID --- */
+.blueprint-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    padding: 20px;
+}
+
+/* --- BLUEPRINT ITEM (CAD Box) --- */
+.bp-item {
+    position: relative;
+    padding: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: transparent;
+    /* No background */
+    transition: all 0.3s ease;
+    min-height: 250px;
+}
+
+.bp-item:hover {
+    border-color: var(--neon-primary);
+    background: rgba(57, 255, 20, 0.01);
+    box-shadow: 0 0 30px rgba(57, 255, 20, 0.05);
+}
+
+/* Corner Markers */
+.marker {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-color: var(--neon-primary);
+    border-style: solid;
+    opacity: 0.5;
+    transition: all 0.3s;
+}
+
+.top-left {
+    top: -1px;
+    left: -1px;
+    border-width: 2px 0 0 2px;
+}
+
+.top-right {
+    top: -1px;
+    right: -1px;
+    border-width: 2px 2px 0 0;
+}
+
+.bottom-left {
+    bottom: -1px;
+    left: -1px;
+    border-width: 0 0 2px 2px;
+}
+
+.bottom-right {
+    bottom: -1px;
+    right: -1px;
+    border-width: 0 2px 2px 0;
+}
+
+.bp-item:hover .marker {
+    width: 20px;
+    height: 20px;
+    opacity: 1;
+}
+
+/* --- CONTENT --- */
+.bp-content {
+    text-align: left;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.bp-icon {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: var(--neon-primary);
+    border: 1px solid var(--neon-primary);
+    display: inline-block;
+    padding: 2px 8px;
+    margin-bottom: 20px;
+    align-self: flex-start;
+}
+
+.bp-item h3 {
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin-bottom: 15px;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.2);
+    padding-bottom: 10px;
+}
+
+.specs {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    flex-grow: 1;
+}
+
+/* Decorative tech lines */
+.tech-lines {
+    height: 4px;
+    background: repeating-linear-gradient(45deg,
+            transparent,
+            transparent 5px,
+            rgba(57, 255, 20, 0.1) 5px,
+            rgba(57, 255, 20, 0.1) 10px);
+    margin-top: 20px;
+    width: 50%;
+}
+
+.bp-item:hover .tech-lines {
+    width: 100%;
+    transition: width 0.5s ease;
+}

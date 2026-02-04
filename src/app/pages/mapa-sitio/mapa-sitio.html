@@ -1,0 +1,40 @@
+<div class="map-container">
+  <div class="text-center mb-4">
+    <h1 class="display-4 fw-bold text-primary">Mapa del Sitio</h1>
+    <p class="lead text-secondary">Explora la arquitectura de la información.</p>
+  </div>
+
+  <div class="svg-scroll-container" #scrollContainer>
+    
+    <svg 
+      viewBox="0 0 1200 600"
+      preserveAspectRatio="xMidYMin meet"
+      xmlns="http://www.w3.org/2000/svg">
+
+      <defs>
+        <filter id="neon-glow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="4" result="coloredBlur" />
+          <feMerge>
+            <feMergeNode in="coloredBlur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+      </defs>
+
+      <path *ngFor="let child of children" [attr.d]="getLinkPath(child)" class="connection-line"></path>
+
+      <g class="node-group" (click)="navigateTo(root.path)"
+        [attr.transform]="'translate(' + root.x + ',' + root.y + ')'">
+        <circle r="35" class="node-circle root-node"></circle>
+        <text y="60" class="node-label fw-bold">{{ root.label }}</text>
+      </g>
+
+      <g *ngFor="let child of children" class="node-group" (click)="navigateTo(child.path)"
+        [attr.transform]="'translate(' + child.x + ',' + child.y + ')'">
+        <circle r="25" class="node-circle child-node"></circle>
+        <text y="50" class="node-label">{{ child.label }}</text>
+      </g>
+
+    </svg>
+  </div>
+</div>

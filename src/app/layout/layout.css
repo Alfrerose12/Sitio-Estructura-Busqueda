@@ -1,0 +1,133 @@
+/* 1. Ajuste en los contenedores raíz para el Sticky Footer */
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Estilos para la barra superior */
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    background-color: rgba(5, 5, 5, 0.7);
+    /* Fondo semi-transparente oscuro */
+    backdrop-filter: blur(15px);
+    /* Efecto vidrio fuerte */
+    -webkit-backdrop-filter: blur(15px);
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+}
+
+.brand {
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--text-main);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    letter-spacing: 0.5px;
+}
+
+/* Estilos para los enlaces del menú */
+.menu {
+    display: flex;
+    flex-grow: 1;
+    margin-left: 40px;
+}
+
+.menu a {
+    margin-right: 5px;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 50px;
+    /* Pill shape */
+    color: var(--text-muted);
+    transition: all 0.3s ease;
+    font-weight: 500;
+    border: 1px solid transparent;
+}
+
+.menu a:hover {
+    color: var(--text-main);
+    background-color: rgba(255, 255, 255, 0.05);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+}
+
+/* Estilos especial cuando el enlace está activo */
+.menu a.active {
+    font-weight: 600;
+    color: var(--neon-primary);
+    /* Texto verde neón */
+    background: rgba(57, 255, 20, 0.05);
+    /* Fondo verde muy sutil */
+    border: 1px solid rgba(57, 255, 20, 0.2);
+    box-shadow: 0 0 15px rgba(57, 255, 20, 0.1);
+}
+
+/* 2. Modificación en el contenido para que empuje al footer */
+.content {
+    flex: 1;
+    padding: 24px;
+    position: relative;
+}
+
+.footer {
+    padding: 20px 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    background-color: rgba(5, 5, 5, 0.9);
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+/* Ajuste para el formulario de búsqueda en la topbar */
+.topbar form {
+    display: flex;
+    gap: 10px;
+}
+
+/* INPUT ESTILIZADO */
+.form-control {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    color: var(--text-main) !important;
+    border-radius: 20px !important;
+    padding: 6px 15px !important;
+    transition: all 0.3s ease !important;
+}
+
+.form-control:focus {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    border-color: var(--neon-primary) !important;
+    box-shadow: 0 0 10px rgba(57, 255, 20, 0.2) !important;
+    outline: none !important;
+}
+
+.form-control::placeholder {
+    color: rgba(255, 255, 255, 0.3) !important;
+}
+
+/* BOTÓN ESTILIZADO */
+.btn-primary {
+    background-color: transparent !important;
+    color: var(--neon-primary) !important;
+    border: 1px solid var(--neon-primary) !important;
+    border-radius: 20px !important;
+    padding: 4px 16px !important;
+    transition: all 0.3s ease !important;
+}
+
+.btn-primary:hover {
+    background-color: var(--neon-primary) !important;
+    color: #000 !important;
+    box-shadow: 0 0 15px rgba(57, 255, 20, 0.4) !important;
+}

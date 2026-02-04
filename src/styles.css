@@ -1,1 +1,180 @@
-/* You can add global styles to this file, and also import other style files */
+/* --- CONFIGURACIÓN DE TIPOGRAFÍA Y BASE --- */
+:root {
+    /* Paleta Deep Dark & Neon */
+    --bg-body: #050505;
+    --bg-card: #0a0a0a;
+    --text-main: #ffffff;
+    --text-muted: #b0b0b0;
+
+    --neon-primary: #39FF14;
+    --neon-glow: 0 0 10px rgba(57, 255, 20, 0.5);
+
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+    --glass-blur: blur(10px);
+
+    --primary-gradient: linear-gradient(135deg, #39FF14 0%, #21a80d 100%);
+}
+
+html,
+body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    margin: 0;
+    height: 100%;
+}
+
+/* Forzar herencia de fuente */
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
+}
+
+/* --- ESTRUCTURA GLOBAL (Sticky Footer) --- */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    /* Ensure body takes full viewport height */
+}
+
+/* Clase para el contenedor principal en cada componente */
+.container {
+    flex: 1 0 auto;
+    /* Empuja el footer hacia abajo */
+    padding-bottom: 100px;
+    /* Colchón de seguridad antes del footer */
+}
+
+/* Ajuste responsivo del padding-bottom pa moviles */
+@media (max-width: 576px) {
+    .container {
+        padding-bottom: 60px;
+        /* Menos espacio en moviles */
+    }
+}
+
+/* --- ESTILO DE TARJETAS UNIFICADO (BASE) --- */
+.card {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: var(--glass-border) !important;
+    border-radius: 25px !important;
+    /* Más redondeado */
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    color: var(--text-main);
+    overflow: hidden;
+}
+
+.card-body {
+    padding: 1.5rem;
+    /* Padding más elegante y compacto */
+    display: flex;
+    align-items: center;
+    /* Alineación vertical centrada para icono lateral */
+    text-align: left;
+    /* Alineación izquierda por defecto para modo dashboard */
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    border-color: var(--neon-primary) !important;
+    box-shadow: 0 0 25px rgba(57, 255, 20, 0.15) !important;
+}
+
+/* Deshabilitar hover en dispositivos tactiles - REMOVED PER USER REQUEST */
+/* @media (hover: none) { ... } */
+
+/* Estilo para los iconos laterales (NUEVO) */
+.icon-side {
+    background-color: rgba(255, 255, 255, 0.03);
+    color: var(--neon-primary);
+    min-width: 70px;
+    height: 70px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    margin-right: 1.5rem;
+    /* Espacio a la derecha del icono */
+    border: 1px solid rgba(57, 255, 20, 0.2);
+    box-shadow: 0 0 15px rgba(57, 255, 20, 0.05);
+    flex-shrink: 0;
+    /* Evitar que se aplaste */
+}
+
+/* Old display-6 fallback just in case, but prefer icon-side */
+.display-6 {
+    display: none;
+    /* Force switch to new structure if possible, or keep as legacy support? Better to update HTML. */
+}
+
+/* --- UTILIDADES DE TEXTO --- */
+.text-primary {
+    color: var(--neon-primary) !important;
+    text-shadow: 0 0 5px rgba(57, 255, 20, 0.4);
+}
+
+.text-secondary,
+.text-muted {
+    color: var(--text-muted) !important;
+}
+
+.card-title {
+    color: var(--text-main);
+    font-size: 1.1rem;
+    /* Un poco más compacto */
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+}
+
+.card-text {
+    color: var(--text-muted) !important;
+    line-height: 1.4;
+    font-size: 0.9rem;
+    /* Texto compacto */
+}
+
+/* Glass Utility Class */
+.glass {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: var(--glass-border);
+}
+
+/* --- ALERTS --- */
+.alert {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-main);
+    border-radius: 12px;
+}
+
+.alert-warning {
+    border-color: #ffc107;
+    color: #ffc107;
+    background: rgba(255, 193, 7, 0.1);
+}
+
+/* --- RESPONSIVIDAD EXTRA --- */
+@media (max-width: 768px) {
+    .col-md-10, .col-lg-8, .col-md-4 {
+        width: 100% !important; /* Las tarjetas se apilan en celular */
+    }
+    
+    .card-body {
+        padding: 1.5rem !important; /* Espacio más cómodo en pantallas pequeñas */
+    }
+
+    h2 {
+        font-size: 1.8rem; /* Título más ajustado al celular */
+    }
+}

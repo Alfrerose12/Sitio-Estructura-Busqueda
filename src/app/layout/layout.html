@@ -1,0 +1,45 @@
+<header class="topbar navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand brand" href="#">Sitio-Estructura</a>
+
+        <!-- Botón Hamburguesa -->
+        <button class="navbar-toggler" type="button" (click)="toggleMenu()" [attr.aria-expanded]="isMenuOpen"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Contenido Colapsable -->
+        <div class="collapse navbar-collapse" [class.show]="isMenuOpen" id="navbarNav">
+            <nav class="navbar-nav me-auto mb-2 mb-lg-0 menu">
+                <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true }"
+                    (click)="closeMenu()"> Inicio </a>
+                <a class="nav-link" routerLink="/breadcrumbs" routerLinkActive="active" (click)="closeMenu()">
+                    Breadcrumbs </a>
+                <a class="nav-link" routerLink="/elementos" routerLinkActive="active" (click)="closeMenu()"> Elementos
+                </a>
+                <a class="nav-link" routerLink="/menu" routerLinkActive="active" (click)="closeMenu()"> Menú </a>
+                <a class="nav-link" routerLink="/mapa-sitio" routerLinkActive="active" (click)="closeMenu()"> Mapa del
+                    sitio </a>
+                <a class="nav-link" routerLink="/busqueda" routerLinkActive="active" (click)="closeMenu()"> Búsqueda
+                </a>
+                <a class="nav-link" routerLink="/contacto" routerLinkActive="active" (click)="closeMenu()"> Contacto
+                </a>
+            </nav>
+
+            <form class="d-flex" (submit)="$event.preventDefault(); goSearch(); closeMenu()">
+                <input class="form-control form-control-sm me-2" placeholder="Buscar..." [(ngModel)]="quickQuery"
+                    name="quickQuery" />
+                <button class="btn btn-sm btn-primary" type="submit">Ir</button>
+            </form>
+        </div>
+    </div>
+</header>
+
+<main class="content">
+    <app-breadcrumb></app-breadcrumb>
+    <router-outlet></router-outlet>
+</main>
+
+<footer class="footer">
+    <small>Desarrollo Web Profesional</small>
+</footer>

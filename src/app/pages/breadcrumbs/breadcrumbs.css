@@ -1,0 +1,155 @@
+/* --- GLASS CONTAINER --- */
+.glass-container {
+    max-width: 1200px;
+    margin: 60px auto;
+    padding-bottom: 100px;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* --- TRACK LAYOUT (HORIZONTAL) --- */
+.breadcrumb-track {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 20px;
+}
+
+/* --- CRUMB ITEM --- */
+.crumb-item {
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.crumb-glass {
+    min-width: 200px;
+    background: rgba(20, 20, 20, 0.6);
+    /* Dark subtle background */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(57, 255, 20, 0.1);
+    /* Very faint neon */
+    border-radius: 50px;
+    /* Pill shape */
+    padding: 15px 30px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    cursor: pointer;
+}
+
+/* --- HOVER EFFECTS --- */
+.crumb-glass:hover {
+    background: rgba(30, 30, 30, 0.7);
+    border-color: #39FF14;
+    /* Neon Green */
+    box-shadow: 0 0 20px rgba(57, 255, 20, 0.2);
+    /* Neon Glow */
+    transform: translateY(-2px);
+}
+
+/* --- ACTIVE STATE --- */
+.crumb-item.active .crumb-glass {
+    background: rgba(57, 255, 20, 0.05);
+    border-color: #39FF14;
+    box-shadow: 0 0 25px rgba(57, 255, 20, 0.15);
+}
+
+.crumb-item.active h3 {
+    color: #39FF14;
+    text-shadow: 0 0 8px rgba(57, 255, 20, 0.6);
+}
+
+/* --- TYPOGRAPHY --- */
+.crumb-icon {
+    font-size: 1.5rem;
+}
+
+.crumb-info {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.crumb-info h3 {
+    margin: 0;
+    font-size: 1rem;
+    color: #fff;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.crumb-info p {
+    margin: 0;
+    font-size: 0.8rem;
+    color: #aaa;
+}
+
+/* --- SEPARATOR --- */
+.crumb-separator {
+    color: #39FF14;
+    font-size: 1.5rem;
+    font-weight: 300;
+    text-shadow: 0 0 5px rgba(57, 255, 20, 0.8);
+    animation: pulseSeparator 2s infinite;
+}
+
+/* --- ANIMATIONS --- */
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.crumb-item {
+    animation: slideInRight 0.6s ease-out forwards;
+}
+
+.crumb-item:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.crumb-item:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+/* Separator is 2 */
+.crumb-item:nth-child(5) {
+    animation-delay: 0.3s;
+}
+
+@keyframes pulseSeparator {
+
+    0%,
+    100% {
+        opacity: 0.5;
+        transform: scale(0.9);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .breadcrumb-track {
+        flex-direction: column;
+    }
+
+    .crumb-separator {
+        transform: rotate(90deg);
+        /* Point down */
+        margin: 5px 0;
+    }
+}

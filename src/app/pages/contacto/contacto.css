@@ -1,0 +1,74 @@
+/* --- ADAPTACIÓN DE INPUTS AL TEMA OSCURO --- */
+.glass-input {
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    color: var(--text-main) !important;
+    border-radius: 12px !important;
+    padding: 12px 15px;
+    transition: all 0.3s ease;
+}
+
+.glass-input:focus {
+    border-color: var(--neon-primary) !important;
+    box-shadow: 0 0 15px rgba(57, 255, 20, 0.2) !important;
+    background: rgba(57, 255, 20, 0.02) !important;
+    outline: none;
+}
+
+/* --- BOTONES CON EFECTO NEON --- */
+.btn-neon {
+    background: var(--primary-gradient);
+    color: #000;
+    border: none;
+    font-weight: 700;
+    box-shadow: var(--neon-glow);
+    transition: 0.3s;
+}
+
+.btn-neon:hover:not(:disabled) {
+    box-shadow: 0 0 20px var(--neon-primary);
+    transform: scale(1.05);
+}
+
+.btn-outline-neon {
+    border: 1px solid var(--neon-primary);
+    color: var(--neon-primary);
+    background: transparent;
+}
+
+.btn-outline-neon:hover {
+    background: rgba(57, 255, 20, 0.1);
+    color: var(--neon-primary);
+}
+
+/* --- INPUT GROUP (CAPTCHA) --- */
+.glass-group {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.input-group-text.glass {
+    border-right: 1px solid rgba(255, 255, 255, 0.1) !important;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* --- AJUSTES RESPONSIVOS --- */
+@media (max-width: 768px) {
+    .card-body {
+        padding: 2rem !important; /* Más espacio en móviles */
+    }
+    
+    .display-6 {
+        font-size: 1.8rem;
+    }
+
+    .d-flex.justify-content-end {
+        flex-direction: column; /* Botones uno sobre otro en celular */
+        width: 100%;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}

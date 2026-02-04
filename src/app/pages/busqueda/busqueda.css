@@ -1,0 +1,244 @@
+/* --- CONTENEDOR PRINCIPAL --- */
+.container {
+    max-width: 1000px;
+    margin: 3rem auto;
+    padding: 2rem;
+    padding-bottom: 120px;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    min-height: 80vh;
+}
+
+/* --- TARJETAS (PANEL GLASS) --- */
+.card {
+    /* Diseño Visual (Neon/Glass) */
+    background: var(--glass-bg, rgba(255, 255, 255, 0.03));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3) !important;
+    
+    margin-bottom: 2.5rem;
+    border-radius: 20px !important;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+
+    /* CORRECCIÓN ESTRUCTURAL (Blindaje contra style.css) */
+    display: block !important; /* Anula el flex global si existiera en .card */
+    overflow: visible !important;
+}
+
+.card:hover {
+    border-color: rgba(57, 255, 20, 0.3);
+}
+
+.card-title {
+    margin-top: 0;
+    margin-bottom: 2rem;
+    font-size: 1.75rem;
+    color: #fff;
+    font-weight: 700;
+    text-shadow: 0 0 10px rgba(57, 255, 20, 0.4);
+    display: block !important;
+}
+
+/* --- RESET CRÍTICO DEL CARD BODY --- */
+/* Esta clase es la que arregla el conflicto con tu style.css global */
+.card-body {
+    display: block !important; /* Fuerza verticalidad, anulando 'display: flex' global */
+    padding: 2.5rem !important;
+    text-align: left !important;
+    background: transparent !important;
+}
+
+/* --- INPUTS Y FORMULARIOS --- */
+.form-label {
+    display: block;
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+    color: var(--neon-primary, #39FF14);
+    letter-spacing: 0.5px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+.input-group {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+}
+
+.form-control,
+.form-select {
+    width: 100%;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.4) !important; /* Fondo oscuro */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: #fff !important;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+    display: block; /* Asegura comportamiento de bloque */
+}
+
+.form-control:focus,
+.form-select:focus {
+    outline: none;
+    border-color: var(--neon-primary, #39FF14);
+    box-shadow: 0 0 15px rgba(57, 255, 20, 0.2);
+    background: rgba(0, 0, 0, 0.6) !important;
+}
+
+/* --- BOTONES --- */
+.btn {
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #39FF14 0%, #21a80d 100%) !important;
+    border: none !important;
+    color: #000 !important; /* Texto negro para contraste */
+    box-shadow: 0 0 10px rgba(57, 255, 20, 0.4);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(57, 255, 20, 0.7) !important;
+}
+
+.btn-outline-secondary {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #ccc;
+}
+
+.btn-outline-secondary:hover {
+    border-color: #fff;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* --- LISTA DE RESULTADOS --- */
+.list-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.list-group-item {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 1.5rem;
+    text-decoration: none;
+    color: #b0b0b0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.list-group-item:hover {
+    background: rgba(57, 255, 20, 0.05);
+    color: #fff;
+    border-color: var(--neon-primary, #39FF14);
+    transform: translateX(5px);
+    box-shadow: 0 0 15px rgba(57, 255, 20, 0.1);
+}
+
+/* Barra lateral neon en hover */
+.list-group-item:hover::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background-color: var(--neon-primary, #39FF14);
+    box-shadow: 0 0 10px var(--neon-primary, #39FF14);
+}
+
+/* --- TEXTOS --- */
+.fw-semibold {
+    font-weight: 700;
+    color: var(--neon-primary, #39FF14);
+    font-size: 1.15rem;
+    display: block;
+    margin-bottom: 0.4rem;
+}
+
+.text-muted {
+    color: #a0a0a0 !important;
+    font-size: 0.95rem;
+}
+
+/* --- BADGES --- */
+.badge {
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* --- REJILLA LOCAL (Protección contra colapso global) --- */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+    gap: 0; /* Controlamos el gap con padding */
+}
+
+/* Definición estricta de columnas para escritorio */
+@media (min-width: 768px) {
+    .col-md-4 {
+        flex: 0 0 33.333333%;
+        max-width: 33.333333%;
+        padding: 0 10px;
+    }
+    .col-md-8 {
+        flex: 0 0 66.666667%;
+        max-width: 66.666667%;
+        padding: 0 10px;
+    }
+}
+
+/* --- RESPONSIVIDAD MÓVIL --- */
+@media (max-width: 768px) {
+    .container { padding: 1rem; padding-bottom: 80px; }
+    .card-body { padding: 1.5rem !important; }
+    
+    .input-group {
+        flex-direction: column;
+    }
+    
+    .btn { width: 100%; }
+    
+    .list-group-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .badge {
+        align-self: flex-start;
+    }
+    
+    /* En móvil forzamos 100% */
+    .col-md-4, .col-md-8 {
+        flex: 0 0 100%;
+        max-width: 100%;
+        margin-bottom: 20px; /* Separación vertical */
+    }
+}

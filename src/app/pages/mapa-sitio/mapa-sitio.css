@@ -1,0 +1,138 @@
+/* --- CONTENEDOR GENERAL --- */
+.map-container {
+    width: 100%;
+    /* CAMBIO 1: Quitamos 85vh para que no sobre espacio negro abajo */
+    min-height: auto; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 100px;
+    background: transparent;
+}
+
+/* --- VENTANA DE SCROLL (EL MARCO) --- */
+.svg-scroll-container {
+    width: 100%;
+    
+    /* CAMBIO 2: Tope de ancho en escritorio. 
+       Esto hace que en una pantalla gigante el mapa no se estire de borde a borde,
+       sino que quede contenido en una caja elegante de 1000px. */
+    max-width: 1000px; 
+    
+    overflow-x: auto;
+    display: block;
+    
+    /* Quitamos el padding interno para que el borde pegue con el dibujo */
+    padding: 0; 
+    
+    /* Estética Cyberpunk */
+    background: rgba(5, 5, 5, 0.4);
+    border: 1px solid rgba(57, 255, 20, 0.15);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5); /* Sombra externa más marcada */
+    
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: var(--neon-primary) rgba(0,0,0,0.3);
+    text-align: center;
+}
+
+/* --- LIENZO SVG (EL DIBUJO) --- */
+svg {
+    /* Fondo Blueprint */
+    background:
+        radial-gradient(circle at center, rgba(57, 255, 20, 0.05) 0%, rgba(0,0,0,0) 60%),
+        linear-gradient(rgba(5, 5, 5, 0.95), rgba(5, 5, 5, 0.95)),
+        url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v40H0V0zm1 1h38v38H1V1z' fill='%2339FF14' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+    
+    border-radius: 20px; /* Coincide con el contenedor */
+    box-shadow: none; /* Quitamos sombra interna, ya la tiene el contenedor */
+
+    /* --- DIMENSIONES INTELIGENTES --- */
+    display: block;
+    height: auto;
+    width: 100%;
+    
+    /* CAMBIO 3: Ancho mínimo para activar scroll en celular.
+       700px es suficiente para ver bien los nodos sin que quede gigante. */
+    min-width: 700px; 
+    
+    margin: 0 auto;
+}
+
+/* --- CONEXIONES --- */
+.connection-line {
+    fill: none;
+    stroke: var(--neon-primary);
+    stroke-width: 2;
+    stroke-opacity: 0.5;
+    transition: all 0.5s ease;
+    filter: drop-shadow(0 0 3px var(--neon-primary));
+}
+
+/* --- NODOS E INTERACCIÓN --- */
+.node-group {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.node-group:hover .node-circle {
+    fill: var(--neon-primary);
+    fill-opacity: 0.2;
+    stroke-width: 4;
+    filter: url(#neon-glow);
+}
+
+.node-group:hover .node-label {
+    fill: #fff;
+    font-weight: 800;
+    text-shadow: 0 0 10px var(--neon-primary);
+    font-size: 16px;
+}
+
+.node-circle {
+    fill: #000;
+    stroke: var(--neon-primary);
+    stroke-width: 2;
+    transition: all 0.3s ease;
+}
+
+.root-node {
+    fill: rgba(57, 255, 20, 0.15);
+    stroke-width: 3;
+    animation: pulse 3s infinite;
+}
+
+.child-node {
+    animation: pulse 4s infinite 1.5s;
+}
+
+/* --- TEXTOS --- */
+.node-label {
+    fill: #ffffff;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    text-anchor: middle;
+    pointer-events: none;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+    transition: font-size 0.3s ease;
+}
+
+/* --- ANIMACIONES --- */
+@keyframes pulse {
+    0%, 100% { stroke-width: 2; filter: drop-shadow(0 0 2px rgba(57, 255, 20, 0.3)); }
+    50% { stroke-width: 4; filter: drop-shadow(0 0 12px rgba(57, 255, 20, 0.8)); }
+}
+
+/* --- RESPONSIVIDAD MÓVIL --- */
+@media (max-width: 768px) {
+    .node-label {
+        font-size: 16px;
+    }
+    
+    .svg-scroll-container {
+        border: none;
+        background: transparent;
+        box-shadow: none; /* Más limpio en celular */
+    }
+}
